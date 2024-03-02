@@ -49,8 +49,8 @@ then
 	fi
 fi
 #echo "Removing the old writer utility and compiling as a native application"
-#make clean
-#make
+make clean
+make
 
 for i in $( seq 1 $NUMFILES)
 do
@@ -72,30 +72,4 @@ else
 	exit 1
 fi
 
-
-# Clean previous build artifacts
-make clean
-
-# Compile writer application using native compilation
-make
-
-# Check if writer binary exists
-if [ ! -x "./writer" ]; then
-    echo "Error: writer binary not found or not executable"
-    exit 1
-fi
-
-# Create test directory
-mkdir -p testdir
-
-# Run writer utility
-./writer "Hello, world!" testdir/output.txt
-
-# Verify if file is created
-if [ ! -f "testdir/output.txt" ]; then
-    echo "Error: File not created"
-    exit 1
-fi
-
-echo "Test successful"
 

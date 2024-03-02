@@ -1,7 +1,3 @@
-CC = gcc
-CFLAGS = -Wall -Wextra
-LDFLAGS =
-TARGET = writer
 
 # Check if CROSS_COMPILE is specified
 ifdef CROSS_COMPILE
@@ -10,13 +6,9 @@ endif
 
 .PHONY: all clean
 
-all: $(TARGET)
-
-$(TARGET): $(TARGET).o
-    $(CC) $(LDFLAGS) -o $@ $^
-
-$(TARGET).o: $(TARGET).c
-    $(CC) $(CFLAGS) -c -o $@ $<
+all: writer.c
+	$(CC) writer.c -o writer
 
 clean:
-    $(RM) $(TARGET) $(TARGET).o
+	rm -rf *.o writer
+
